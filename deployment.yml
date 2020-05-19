@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-udacity
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  selector:
+    matchLabels:
+      app: capstone-udacity
+  template:
+    metadata:
+      labels:
+        app: capstone-udacity
+    spec:
+      containers:
+        - name: capstone-udacity
+          image:  120106008631.dkr.ecr.us-east-1.amazonaws.com/udacity-capstone:latest
+          ports:
+          - containerPort: 80
