@@ -27,9 +27,15 @@ pipeline {
                 sh 'docker push 120106008631.dkr.ecr.us-east-1.amazonaws.com/udacity-capstone:latest'
             }
         }
-        stage('EKS Cluster') {
+        stage('Set current Kubectl context') {
             steps {
-                sh 'eksctl create cluster --name capstone-cluster --region us-east-1 --zones=us-east-1a,us-east-1b,us-east-1c --node-type t2.small --nodes 2 --managed'
+                sh 'kubectl config use-context arn:aws:eks:us-east-1:120106008631:cluster/capstone-project'
+            }
+        }
+        stage('Deploy Container') {
+            steps {
+                sh 'kubectl apply -f ./deployment.yml'
+                sh 'kubectl apply -f ./service.yml'
             }
         }
     }
