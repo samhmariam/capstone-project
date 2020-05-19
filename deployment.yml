@@ -3,15 +3,10 @@ kind: Deployment
 metadata:
   name: capstone-udacity
 spec:
-  replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 2
-      maxSurge: 2
   selector:
     matchLabels:
       app: capstone-udacity
+  replicas: 1
   template:
     metadata:
       labels:
@@ -19,6 +14,6 @@ spec:
     spec:
       containers:
         - name: capstone-udacity
-          image: 120106008631.dkr.ecr.us-east-1.amazonaws.com/udacity-capstone:latest
+          image: 120106008631.dkr.ecr.us-east-1.amazonaws.com/udacity-capstone:latestgitr
           ports:
           - containerPort: 80
