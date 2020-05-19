@@ -29,7 +29,7 @@ pipeline {
         }
         stage('EKS Cluster') {
             steps {
-                sh 'eksctl create cluster --name capstone-cluster --region us-east-1 --zones=us-east-1b,us-east-1c,us-east-1d --node-type=t2.medium --nodes=2 --managed'
+                sh 'eksctl create cluster --name capstone-cluster --region us-east-1 --zones=us-east-1a,us-east-1b,us-east-1c --node-type t2.small --nodes 2 --managed'
             }
         }
     }
